@@ -1,0 +1,49 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iotsimulator
+  labels:
+    app: flask
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: iotsimulator
+        image: rahulreddyravipally/iotsimulator:v4
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: iotsimulator-service
+spec:
+  selector:
+    app: flask
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    nodePort: 32000
+  type: NodePort
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: iotsimulator-url
+spec:
+  path: /
+  to:
+    kind: Service
+    name: iotsimulator-service
+  port:
+    targetPort: 8080

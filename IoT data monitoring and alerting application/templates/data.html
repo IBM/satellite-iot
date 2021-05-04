@@ -1,0 +1,843 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>IoT data monitoring application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/fonts/fonts.css')}}">
+    <script src="{{ url_for('static', filename='gauge.min.js')}}"></script>
+</head>
+<style>
+
+
+
+  body{
+  font-family: 'Open Sans', sans-serif;
+  color: #525f7f;
+  background: black;
+}
+
+a{
+  text-decoration:none;
+}
+
+p{
+  margin: 0px;
+  padding: 0px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.reference a{
+  background: #8787ff;
+  display:inline-flex;
+  padding: 10px 30px;
+  color: white;
+  border-radius: 100px;
+  
+}
+
+.container p:not(:first-child){
+  margin-top:10px
+}
+
+.container{
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 80%;
+  position: relative;
+  right: 0;
+  top: 50px;
+  
+  .banner{
+    display:inline;
+    position: absolute;
+    color: white;
+    line-height: 14px;
+    padding: 8px 20px;
+    border-radius: 100px;    
+    background-color: #17d352;
+    z-index: 100;
+    top: -15px;
+    left: 10px;
+  }
+  
+}
+
+
+
+.container ul{
+  position:relative;
+  list-style:none;
+}
+
+.container ul li{
+  padding: 35px;
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform-origin: 50% 100%;
+  border-radius: 4px;
+  
+  .date{
+    margin-left: 10px;
+    color: #8898aa;
+  }
+  }
+
+
+.tab-0{
+  transform: translateY(-50px) scale(1.07);
+  opacity:0;
+  z-index:90;
+  filter:blur(10px);
+  transition: all 1s cubic-bezier(0.19, 0.49, 0.46, 0.96);
+}
+
+.tab-1{
+  opcaity: 1;
+  background-color: #fff;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+  z-index:80;
+  transform: scale(1);
+  transition: all 1s cubic-bezier(0.19, 0.49, 0.46, 0.96) 100ms;
+}
+
+.tab-2{
+  transform:translateY(5px) scale(0.9);
+  opacity: 1;
+  z-index: 70; 
+  background: #e2e7ed;
+  color:#e2e7ed;
+  transition: all 1s cubic-bezier(0.19, 0.49, 0.46, 0.96) 200ms;
+}
+
+.tab-3{
+  transform:translateY(55px) scale(0.8);
+  opacity: .5;
+  z-index: 60; 
+  background: #e2e7ed;
+  color:#e2e7ed;
+  transition: all 1s cubic-bezier(0.19, 0.49, 0.46, 0.96) 300ms;
+// transition: all 1s cubic-bezier(0.71, 0.01, 0.16, 1) 400ms;
+}
+
+
+.tab-4{
+  transform:translateY(50px) scale(0.7);
+  opacity: 0;
+  z-index: 50; 
+  background: grey;
+  color:grey;
+  transition: all 1s cubic-bezier(0.19, 0.49, 0.46, 0.96) 400ms;
+}
+
+.container1{
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    overflow: hidden;
+    background: black;
+    margin-top: 20px;
+}
+
+.container1 ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.container1 ul li{
+    float:left;
+    list-style: none;
+    width:15%;
+    height:200px;
+    background: #C0C0C0;
+    margin :20px 0px 20px 55px; 
+    border:2px solid #A9A9A9;
+    box-sizing: border-box;
+}
+.container1 ul li:hover{
+    opacity: 0.8;
+}
+
+.container1 ul li .bottom{
+    width: 100%;
+    height:50px;
+    line-height: 50px;
+    background: #A9A9A9;    
+    text-align: center;
+    color:black;
+    font-size: 20px;
+   
+}
+
+.container1 ul li .details{
+    width: 40%;
+    height:30px;
+    line-height: 50px;
+    background: #A9A9A9;    
+    text-align: center;
+    color:black;
+    font-size: 20px;
+    margin: auto;
+    padding: 10px;
+   
+}
+
+.containerCanvas {
+  position: relative;
+  top: 40;
+  left: 20;
+  margin: 20px;
+}
+
+
+@media screen and (max-width:1250px){
+    .container ul li{
+        width:40%;
+        margin-left: 40px;
+         
+    }
+</style>
+<head>
+
+</head>
+
+<body>
+
+<div class="container1">
+        <ul>
+            <li id="c1"> <div class="bottom">Container 1</div><br><div class="details" id="tc1">Temperature</div></li>
+            <li id="c2"> <div class="bottom">Container 2</div> <br><div class="details" id="tc2">Temperature</div></li>
+            <li id="c3"> <div class="bottom">Container 3</div> <br><div class="details" id="tc3">Temperature</div></li>
+            <li id="c4"> <div class="bottom">Container 4</div> <br><div class="details" id="tc4">Temperature</div></li>
+            <li id="c5"> <div class="bottom">Container 5</div> <br><div class="details" id="tc5">Temperature</div></li>            
+        </ul>
+
+<div class="containerCanvas">
+
+<canvas id="canvas-id1"></canvas>
+<canvas id="canvas-id2"></canvas>
+<canvas id="canvas-id3"></canvas>
+<canvas id="canvas-id4"></canvas>
+<canvas id="canvas-id5"></canvas>
+</div>
+<script>
+    var gauge = new RadialGauge({
+        renderTo: 'canvas-id1',
+        width: 300,
+        height: 300,
+        units: "°F",
+        title: "Container 1",
+
+        startAngle: 90,
+        ticksAngle: 180,
+        colorPlate: "#000000",
+        //colorPlateEnd: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#534638",
+        colorNeedle: "#8E7860",
+        colorNeedleEnd: "#8E7860",
+        colorNeedleCircleOuter: "#8E7860",
+        colorNeedleCircleOuterEnd: "#8E7860",
+
+        colorNeedleShadowUp: "#8E7860",
+        colorNeedleShadowDown: "#8E7860",
+
+        colorMajorTicks: ["#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB"],
+        colorMinorTicks: "#EBEBEB",
+
+        minValue: 20,
+        maxValue: 34,
+        majorTicks: ["20","22","24","26","28","30","32","34"],
+        minorTicks: "4",
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 20,
+                "to": 26,
+                "color": "#8b0000"
+            },
+            {
+                "from": 26,
+                "to": 30,
+                "color": "#006400"
+            },
+            {
+                "from": 30,
+                "to": 34,
+                "color": "#8b0000"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        //
+        //barWidth: 20,
+        //barStrokeWidth: 0,
+        //barProgress: 1,
+        //barShadow: 0,
+        //
+        animation: true,
+        //animationDuration: 500,
+        animationRule: "linear",
+        animatedValue: true,
+        //animateOnInit: true,
+
+        borders: false,
+        valueBox: false,
+
+        needleType: "arrow",
+        needleEnd: 65,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+
+        borderShadowWidth: 0
+
+    }).draw();
+
+        var gauge1 = new RadialGauge({
+        renderTo: 'canvas-id2',
+        width: 300,
+        height: 300,
+        units: "°F",
+        title: "Container 2",
+
+        startAngle: 90,
+        ticksAngle: 180,
+        colorPlate: "#000000",
+        //colorPlateEnd: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#534638",
+        colorNeedle: "#8E7860",
+        colorNeedleEnd: "#8E7860",
+        colorNeedleCircleOuter: "#8E7860",
+        colorNeedleCircleOuterEnd: "#8E7860",
+
+        colorNeedleShadowUp: "#8E7860",
+        colorNeedleShadowDown: "#8E7860",
+
+        colorMajorTicks: ["#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB"],
+        colorMinorTicks: "#EBEBEB",
+
+        minValue: 20,
+        maxValue: 34,
+        majorTicks: ["20","22","24","26","28","30","32","34"],
+        minorTicks: "4",
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 20,
+                "to": 26,
+                "color": "#8b0000"
+            },
+            {
+                "from": 26,
+                "to": 30,
+                "color": "#006400"
+            },
+            {
+                "from": 30,
+                "to": 34,
+                "color": "#8b0000"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        //
+        //barWidth: 20,
+        //barStrokeWidth: 0,
+        //barProgress: 1,
+        //barShadow: 0,
+        //
+        animation: true,
+        //animationDuration: 500,
+        animationRule: "linear",
+        animatedValue: true,
+        //animateOnInit: true,
+
+        borders: false,
+        valueBox: false,
+
+        needleType: "arrow",
+        needleEnd: 65,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+
+        borderShadowWidth: 0
+
+    }).draw();
+            var gauge2 = new RadialGauge({
+        renderTo: 'canvas-id3',
+        width: 300,
+        height: 300,
+        units: "°F",
+        title: "Container 3",
+
+        startAngle: 90,
+        ticksAngle: 180,
+        colorPlate: "#000000",
+        //colorPlateEnd: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#534638",
+        colorNeedle: "#8E7860",
+        colorNeedleEnd: "#8E7860",
+        colorNeedleCircleOuter: "#8E7860",
+        colorNeedleCircleOuterEnd: "#8E7860",
+
+        colorNeedleShadowUp: "#8E7860",
+        colorNeedleShadowDown: "#8E7860",
+
+        colorMajorTicks: ["#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB"],
+        colorMinorTicks: "#EBEBEB",
+
+        minValue: 20,
+        maxValue: 34,
+        majorTicks: ["20","22","24","26","28","30","32","34"],
+        minorTicks: "4",
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 20,
+                "to": 26,
+                "color": "#8b0000"
+            },
+            {
+                "from": 26,
+                "to": 30,
+                "color": "#006400"
+            },
+            {
+                "from": 30,
+                "to": 34,
+                "color": "#8b0000"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        //
+        //barWidth: 20,
+        //barStrokeWidth: 0,
+        //barProgress: 1,
+        //barShadow: 0,
+        //
+        animation: true,
+        //animationDuration: 500,
+        animationRule: "linear",
+        animatedValue: true,
+        //animateOnInit: true,
+
+        borders: false,
+        valueBox: false,
+
+        needleType: "arrow",
+        needleEnd: 65,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+
+        borderShadowWidth: 0
+
+    }).draw();
+
+            var gauge3 = new RadialGauge({
+        renderTo: 'canvas-id4',
+        width: 300,
+        height: 300,
+        units: "°F",
+        title: "Container 4",
+
+        startAngle: 90,
+        ticksAngle: 180,
+        colorPlate: "#000000",
+        //colorPlateEnd: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#534638",
+        colorNeedle: "#8E7860",
+        colorNeedleEnd: "#8E7860",
+        colorNeedleCircleOuter: "#8E7860",
+        colorNeedleCircleOuterEnd: "#8E7860",
+
+        colorNeedleShadowUp: "#8E7860",
+        colorNeedleShadowDown: "#8E7860",
+
+        colorMajorTicks: ["#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB"],
+        colorMinorTicks: "#EBEBEB",
+
+        minValue: 20,
+        maxValue: 34,
+        majorTicks: ["20","22","24","26","28","30","32","34"],
+        minorTicks: "4",
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 20,
+                "to": 26,
+                "color": "#8b0000"
+            },
+            {
+                "from": 26,
+                "to": 30,
+                "color": "#006400"
+            },
+            {
+                "from": 30,
+                "to": 34,
+                "color": "#8b0000"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        //
+        //barWidth: 20,
+        //barStrokeWidth: 0,
+        //barProgress: 1,
+        //barShadow: 0,
+        //
+        animation: true,
+        //animationDuration: 500,
+        animationRule: "linear",
+        animatedValue: true,
+        //animateOnInit: true,
+
+        borders: false,
+        valueBox: false,
+
+        needleType: "arrow",
+        needleEnd: 65,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+
+        borderShadowWidth: 0
+
+    }).draw();
+
+            var gauge4 = new RadialGauge({
+        renderTo: 'canvas-id5',
+        width: 300,
+        height: 300,
+        units: "°F",
+        title: "Container 5",
+
+        startAngle: 90,
+        ticksAngle: 180,
+        colorPlate: "#000000",
+        //colorPlateEnd: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#534638",
+        colorNeedle: "#8E7860",
+        colorNeedleEnd: "#8E7860",
+        colorNeedleCircleOuter: "#8E7860",
+        colorNeedleCircleOuterEnd: "#8E7860",
+
+        colorNeedleShadowUp: "#8E7860",
+        colorNeedleShadowDown: "#8E7860",
+
+        colorMajorTicks: ["#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB", "#EBEBEB"],
+        colorMinorTicks: "#EBEBEB",
+
+        minValue: 20,
+        maxValue: 34,
+        majorTicks: ["20","22","24","26","28","30","32","34"],
+        minorTicks: "4",
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 20,
+                "to": 26,
+                "color": "#8b0000"
+            },
+            {
+                "from": 26,
+                "to": 30,
+                "color": "#006400"
+            },
+            {
+                "from": 30,
+                "to": 34,
+                "color": "#8b0000"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        //
+        //barWidth: 20,
+        //barStrokeWidth: 0,
+        //barProgress: 1,
+        //barShadow: 0,
+        //
+        animation: true,
+        //animationDuration: 500,
+        animationRule: "linear",
+        animatedValue: true,
+        //animateOnInit: true,
+
+        borders: false,
+        valueBox: false,
+
+        needleType: "arrow",
+        needleEnd: 65,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+
+        borderShadowWidth: 0
+
+    }).draw();
+
+
+    
+</script>
+
+    </div>
+
+    <div class="container" onload="changePos()">
+  <ul class="ultra">
+   
+    <li class="tab-0">
+      
+   <strong>Container 1</strong> <span id ="nc1" class="date"></span></li>
+
+    <li class="tab-1">
+      
+   <strong>Container 2</strong> <span id ="nc2" class="date"></span></li>
+
+      <li class="tab-2">
+      
+   <strong>Container 3</strong> <span id ="nc3" class="date"></span></li>
+
+      <li class="tab-3">
+      
+   <strong>Container 4</strong> <span id ="nc4" class="date"></span></li>
+
+   <li class="tab-4">
+      
+   <strong>Container 5</strong> <span id ="nc5" class="date"></span></li>
+</ul>
+
+</div>
+
+<script>
+
+  setInterval(changePos,2000)
+
+function changePos(){
+  var x = document.getElementsByClassName("ultra")[0].childNodes;
+  x = Array.from(x)
+   
+  // console.log(x);
+  for(var i=1; i<x.length;i+=2){  
+    if(x[i].classList.contains("tab-0")){
+      x[i].classList.remove("tab-0");
+      x[i].classList.add("tab-4");
+    }
+    else if(x[i].classList.contains("tab-1")){
+      x[i].classList.remove("tab-1");
+      x[i].classList.add("tab-0");
+ 
+    }
+    else if(x[i].classList.contains("tab-2")){
+      x[i].classList.remove("tab-2");
+      x[i].classList.add("tab-1");
+      
+    }
+    else if(x[i].classList.contains("tab-3")){
+      x[i].classList.remove("tab-3");
+      x[i].classList.add("tab-2");
+      
+    }
+    else if(x[i].classList.contains("tab-4")){
+      x[i].classList.remove("tab-4");
+      x[i].classList.add("tab-3");
+    }
+  }
+  
+  let y = x.filter((a)=> {
+    return a.className !== undefined;
+  })
+  
+  console.log(y)
+  let z = findValue(y,"tab-1");
+  
+  function findValue(arr, str){
+    for(let i=0; i <arr.length ;i++){
+      if(arr[i].className === str){
+        return arr[i].offsetHeight;
+      }
+    }
+  }
+  
+  y.forEach((a)=>{
+    if(a.className==="tab-1"){
+      a.style.transform = `scale(1.0)`
+    } else if (a.className === "tab-2"){
+      a.style.transform = `translateY(${z-a.offsetHeight+30}px) scale(0.9)`
+    } else if (a.className === "tab-3"){
+      a.style.transform = `translateY(${z-a.offsetHeight+60}px) scale(0.8)`
+    } else if (a.className === "tab-4"){
+      a.style.transform = `translateY(${z-a.offsetHeight+100}px) scale(0.7)`
+    } else if (a.className === "tab-0"){
+      a.style.transform = `translateY(${z-a.offsetHeight-90}px) scale(1.08)`
+    } 
+  })
+  
+}
+
+
+  </script>
+
+<!-- <button type="button" onclick="stop()">Stop</button> -->
+
+<script>
+
+function myTimer() {
+      var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      x = this.responseText;
+      var obj = JSON.parse(x); 
+      var y = obj["date"]
+      gaugeData(obj)
+      if (obj["container1_temperature"] > 30 ||obj["container1_temperature"] < 26){
+        document.getElementById('c1').style.color = "#8E1600";
+      document.getElementById('c1').style.background="#8E1600";
+      document.getElementById("tc1").innerHTML = obj["container1_temperature"]
+      if (obj["container1_temperature"] > 30){
+        document.getElementById("nc1").innerHTML = "Cooling initiated at " + y
+      }
+      else{
+        document.getElementById("nc1").innerHTML = "Heating initiated at " + y
+      }
+      
+      }
+      else{
+        document.getElementById('c1').style.color = "#046307";
+      document.getElementById('c1').style.background="#046307";
+      document.getElementById("tc1").innerHTML = obj["container1_temperature"]
+      document.getElementById("nc1").innerHTML = "Temperature within threshold"
+      }
+      if (obj["container2_temperature"] > 30 ||obj["container2_temperature"] < 26){
+        document.getElementById('c2').style.color = "#8E1600";
+      document.getElementById('c2').style.background="#8E1600";
+      document.getElementById("tc2").innerHTML = obj["container2_temperature"]
+      if (obj["container2_temperature"] > 30){
+        document.getElementById("nc2").innerHTML = "Cooling initiated at " + y
+      }
+      else{
+        document.getElementById("nc2").innerHTML = "Heating initiated at " + y
+      }
+      }
+      else{
+        document.getElementById('c2').style.color = "#046307";
+      document.getElementById('c2').style.background="#046307";
+      document.getElementById("tc2").innerHTML = obj["container2_temperature"]
+      document.getElementById("nc2").innerHTML = "Temperature within threshold"
+      }
+      if (obj["container3_temperature"] > 30 ||obj["container3_temperature"] < 26){
+        document.getElementById('c3').style.color = "#8E1600";
+      document.getElementById('c3').style.background="#8E1600";
+      document.getElementById("tc3").innerHTML = obj["container3_temperature"]
+      if (obj["container3_temperature"] > 30){
+        document.getElementById("nc3").innerHTML = "Cooling initiated at " + y
+      }
+      else{
+        document.getElementById("nc3").innerHTML = "Heating initiated at " + y
+      }
+      }
+      else{
+        document.getElementById('c3').style.color = "#046307";
+      document.getElementById('c3').style.background="#046307";
+      document.getElementById("tc3").innerHTML = obj["container3_temperature"]
+      document.getElementById("nc3").innerHTML = "Temperature within threshold"
+      }
+      if (obj["container4_temperature"] > 30 ||obj["container4_temperature"] < 26){
+        document.getElementById('c4').style.color = "#8E1600";
+      document.getElementById('c4').style.background="#8E1600";
+      document.getElementById("tc4").innerHTML = obj["container4_temperature"]
+      if (obj["container4_temperature"] > 30){
+        document.getElementById("nc4").innerHTML = "Cooling initiated at " + y
+      }
+      else{
+        document.getElementById("nc4").innerHTML = "Heating initiated at " + y
+      }
+      }
+      else{
+        document.getElementById('c4').style.color = "#046307";
+      document.getElementById('c4').style.background="#046307";
+      document.getElementById("tc4").innerHTML = obj["container4_temperature"]
+      document.getElementById("nc4").innerHTML = "Temperature within threshold"
+      }
+      if (obj["container5_temperature"] > 30 ||obj["container5_temperature"] < 26){
+        document.getElementById('c5').style.color = "#8E1600";
+      document.getElementById('c5').style.background="#8E1600";
+      document.getElementById("tc5").innerHTML = obj["container5_temperature"]
+      if (obj["container5_temperature"] > 30){
+        document.getElementById("nc5").innerHTML = "Cooling initiated at " + y
+      }
+      else{
+        document.getElementById("nc5").innerHTML = "Heating initiated at " + y
+      }
+      }
+      else{
+        document.getElementById('c5').style.color = "#046307";
+      document.getElementById('c5').style.background="#046307";
+      document.getElementById("tc5").innerHTML = obj["container5_temperature"]
+      document.getElementById("nc5").innerHTML = "Temperature within threshold"
+      }
+
+    }
+  };
+  var link = '{{data}}';  
+  xhttp.open("GET",link, true);
+  xhttp.send();
+}
+
+
+var myVar = setInterval(myTimer, 5000);
+
+  function gaugeData(y) {
+      var y1 = y["container1_temperature"]
+      var y2 = y["container2_temperature"]
+      var y3 = y["container3_temperature"]
+      var y4 = y["container4_temperature"]
+      var y5 = y["container5_temperature"]
+      gauge.value = y1;
+      gauge.update();
+      gauge1.value = y2;
+      gauge1.update();
+      gauge2.value = y3;
+      gauge2.update();
+      gauge3.value = y4;
+      gauge3.update();
+      gauge4.value = y5;
+      gauge4.update();
+    }
+
+
+/* 
+function stop(){
+   clearInterval(myVar);
+}
+*/
+
+</script>
+
+</body>
+</html>
