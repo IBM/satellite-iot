@@ -247,9 +247,9 @@ You can complete this step by following the gif in the dropdown below or alterna
   <img src="images/iotdata3.gif" width="420" /> 
 </p>
 
-- In this code pattern we built visual inights using `IBM Streams` and `Streams flow` service on `IBM Cloud pak for data` and we also created a `Monitoring and Alerting application` at your `IBM Satellite location`. You can extent the this code pattern for deriving insights and sending realtime alerts of your Iot data at your location.
+- In this code pattern we built visual inights using `IBM Streams` and `Streams flow` service on `IBM Cloud pak for data` and we also created a `Monitoring and Alerting application` at a `Satellite location`. You can extent the this code pattern for deriving insights and sending realtime alerts of your IoT data at your location with low latency.
 
-- Use the potential of **IBM Cloud pak for data** and build amazing solutions, at your location using **IBM Cloud Satellite**. More about cloud pak for data [here](https://www.ibm.com/in-en/products/cloud-pak-for-data).
+- Use the AI services on **IBM Cloud pak for data** to build amazing solutions, at your location using **IBM Cloud Satellite**. More about cloud pak for data [here](https://www.ibm.com/in-en/products/cloud-pak-for-data).
 
 <!-- keep this -->
 ## License
