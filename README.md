@@ -4,11 +4,22 @@ In the chemical research plant, the containers containing various chemicals unde
 
 In this code pattern, we will create a live dashboard view of temperature IoT data from chemical containers located on-premise. We will also create a monitoring and alerting application that manages automated logs and alerts of the real time IoT data. We will be using IBM Cloud Satellite to create satellite locations and attach hosts from on-premises data centres and edge network. We will then create a Red Hat OpenShift cluster that will live on the satellite location and install IBM Cloud Pak for Data on top of redhat openshift. We will use the services offered by IBM Cloud Pak for Data to build the solution for our usecase. 
 
-![](images/Architecture-Satellite.png)
+<!-- ![](images/Architecture-Satellite.png) -->
 
 ## Flow
 
->> Note: Flow diagram will be updated soon.
+![](images/Architecture.png)
+
+1. Create a Satellite location and assign hosts using IBM Cloud Satellite.
+2. Create the OpenShift Cluster that will live on your satellite location.
+3. Deploy the IoT simulator application on premise.
+4. Install IBM Cloud Pak for Data on the Red Hat OpenShift cluster.
+5. Build a streams flow on Cloud Pak for Data for the incoming IoT data.
+6. Visualize incoming IoT data using Streams service on Cloud Pak for Data.
+7. Deploy IoT data monitoring and alerting application on the Red Hat OpenShift cluster.
+8. Consume the IoT data from the simulator at real time.
+9. Monitor the data at real time using the dashboard UI.
+
 
 ## Pre-requisites
 
@@ -23,7 +34,7 @@ Please follow the below to setup and run this code pattern.
 3. [Assign hosts to the Satellite location control plane](#3-assign-hosts-to-the-satellite-location-control-plane)
 4. [Create the OpenShift Cluster that will live on your satellite location](#4-create-the-openshift-cluster-that-will-live-on-your-satellite-location)
 5. [Install IBM Cloud Pak for Data on the Red Hat OpenShift cluster](#5-install-ibm-cloud-pak-for-data-on-the-red-hat-openshift-cluster)
-6. [Deploy the IoT application on Red Hat OpenShift cluster](#6-deploy-the-iot-application-on-red-hat-openshift-cluster)
+6. [Deploy the IoT simulator application ](#6-deploy-the-iot-simulator-application)
 7. [Build a streams flow and visualize incoming IoT data using Streams service on Cloud Pak for Data](#7-build-a-streams-flow-and-visualize-incoming-iot-data-using-streams-service-on-cloud-pak-for-data)
 8. [Output and future scope](#8-output-and-future-scope)
 
@@ -66,9 +77,9 @@ Please follow the below to setup and run this code pattern.
 - Alternatively, you can also install [Cloud pak for data on Red Hat Marketplace](https://marketplace.redhat.com/en-us/products/ibm-cloud-pak-for-data).
 >> NOTE: If you are installing from Red Hat Marketplace, make sure you have configure the openshift cluster correctly. More information [here](https://marketplace.redhat.com/en-us/documentation/clusters#register-openshift-cluster-with-red-hat-marketplace).
 
-### 6. Deploy the IoT simulator application on Red Hat OpenShift cluster
+### 6. Deploy the IoT simulator application 
 
-Since we don't have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern.
+Since we don't have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern. You can deploy this application on premise.
 
 #### 6.1. Connect to the OpenShift cluster in your CLI
 
