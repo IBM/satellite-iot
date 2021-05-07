@@ -29,10 +29,10 @@ Please follow the below to setup and run this code pattern.
 
 ### 1. Create a Satellite location in IBM Cloud.
 
-- From the [Satellite Locations dashboard](https://cloud.ibm.com/satellite/locations), click Create location. A location represents a data center that you can fill with your own infrastructure resources to run IBM Cloud services or other workloads on your own infrastructure.
+- From the [Satellite Locations dashboard](https://cloud.ibm.com/satellite/locations), click Create location. 
 - Enter a name and an optional description for your location.
-- Select the IBM Cloud region that you want to use to manage your location. For more information about why you must select an IBM Cloud region, see [About IBM Cloud regions for Satellite](https://cloud.ibm.com/docs/satellite?topic=satellite-sat-regions#understand-supported-regions). Make sure to select the region that is closest to where your host machines physically reside that you plan to add to your Satellite location to ensure low network latency between your Satellite location and IBM Cloud.
-- Click Create location. When you create the location, a location master is deployed to one of the zones that are located in the IBM Cloud region that you selected.
+- Select the IBM Cloud region that you want to use to manage your location.
+- Click Create location. 
 
 ### 2. Attaching hosts from on-premises data centers and edge networks
 
@@ -46,8 +46,8 @@ Please follow the below to setup and run this code pattern.
 - For the Cluster, select `Control plane`.
 - For the Zone, select a unique zone such as `zone-1`.
 - Click `Assign host`. 
->>NOTE: When you assign the hosts to the control plane, IBM bootstraps your machine. This process might take a few minutes to complete. During the bootstrapping process, the Health of your machine changes from Ready to Provisioning.
-- Repeat these steps for each host. Make sure that you assign each host to a different zone so that you spread all three hosts across all three zones, such as `zone-1`, `zone-2`, and `zone-3`.
+>>NOTE: This process might take a few minutes to complete.
+- Repeat these steps for each host and make sure you select unique zone, such as `zone-1`, `zone-2` and `zone-3`.
 - From the Hosts tab, verify that your hosts are successfully assigned to the Satellite control plane. The assignment is successful when an IP address is added to your host and the Health status changes to Normal.
 
 ### 4. Create a Red Hat OpenShift cluster that will live on your satellite location
@@ -63,9 +63,12 @@ Please follow the below to setup and run this code pattern.
 >> NOTE: We will be using watson studio, streams flow and streams services for this code pattern. Please follow below links to install respective services on Cloud Pak for Data. <br> [Watson Studio](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/wsl.html) <br>[Streams](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/streams.html)
 <br>[Streams Flows](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/stflows.html)
 
+- Alternatively, you can also install [Cloud pak for data on Red Hat Marketplace](https://marketplace.redhat.com/en-us/products/ibm-cloud-pak-for-data).
+>> NOTE: If you are installing from Red Hat Marketplace, make sure you have configure the openshift cluster correctly. More information [here](https://marketplace.redhat.com/en-us/documentation/clusters#register-openshift-cluster-with-red-hat-marketplace).
+
 ### 6. Deploy the IoT simulator application on Red Hat OpenShift cluster
 
->> NOTE: Since we dont have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern.
+Since we don't have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern.
 
 #### 6.1. Connect to the OpenShift cluster in your CLI
 
@@ -103,27 +106,30 @@ Login into your `Cloud Pak for Data` instance that you installed in Step 4
 
 #### 7.1  Create a project on cloud pak for data
 
-- Click on the menu tab and select all projects.
+You can complete this step by following the gif in the dropdown below or alternatively you can follow the steps described below  
 
-<img src="images/project1.png" width="300" height="240">
+<details>
+<summary>GIF</summary>
+<img src="images/project.gif">
+</details>
+
+- Click on the menu tab and select all projects.
 
 - Create on `New project` tab.
 
-![](images/project2.png)
+- Select `Analytics project` and click on `Next`.
 
-- Click on `Next` as shown below.
+<!--- ![](images/project3.png) -->
 
-![](images/project3.png)
+- Select `Create an empty project`.
 
-- Select `Create an empty project` as shown below.
-
-![](images/project4.png)
+<!--- ![](images/project4.png) -->
 
 - Give a name to the project and click on `Create`.
 
-![](images/project5.png)
+<!--- ![](images/project5.png) -->
 
-#### 7.2 Create a Stream Flow from the IoT simuator on Cloud Pak for Data
+#### 7.2 Create a Stream Flow from the IoT simulator on Cloud Pak for Data
 
 - Click on `Add to project`.
 
