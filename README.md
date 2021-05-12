@@ -104,12 +104,30 @@ Since we don't have access to actual temperature sensors, we will be using an Io
 #### 6.4. Run the following command and copy the route url 
 
     oc get routes -n <project_name>
+   
+   You will receive the following output. Copy the url path.
     
-![](images/oc1.png)
+```
+user@user-MacBook-Pro IoTdata % oc get routes -n iotdata 
+NAME            HOST/PORT                                                                                                            PATH   SERVICES            PORT   TERMINATION   WILDCARD
+iotvisual-url   iotvisual-url-iotdata.cp-dal10-b3c-xxxxxx-xxxxxxxxxxxxxxxxxxxxxxx-0000.us-south.containers.appdomain.cloud   /      iotvisual-service   8080                 None
+user@user-MacBook-Pro IoTdata % 
+```
 
 #### 6.5. Test the IoT simulator app by running it using copied url in the step above on your web browser. 
 
-![](images/Iotsimulator.png)
+You will recieve the following output,
+
+```
+{
+  "container1_temperature": 27, 
+  "container2_temperature": 29, 
+  "container3_temperature": 27, 
+  "container4_temperature": 25, 
+  "container5_temperature": 30, 
+  "date": "2021-05-12 11:25:43"
+}
+```
 
 ### 7. Build a streams flow and visualize incoming IoT data using Streams service on Cloud Pak for Data
 
@@ -228,7 +246,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 - Test the IoT simulator app by running it using copied url in the step above on your web browser.
 
-![](images/iotdata1.png)
+<!-- ![](images/iotdata1.png) -->
 
 - Paste the url of IoT simulator application that you copied in [step 6.5](#65-test-the-iot-simulator-app-by-running-it-using-copied-url-in-the-step-above-on-your-web-browser) in the text box as shown below and click on `View my data dashboard`.
 
@@ -239,12 +257,12 @@ You can complete this step by following the gif in the dropdown below or alterna
 ![](images/iotdata3.gif)
 
 ### 9. Output and future scope
-
+<!-- 
 <p float="left">
   <img src="images/streams8.gif" width="420" />
   <img src="images/iotdata3.gif" width="420" /> 
 </p>
-
+-->
 - In this code pattern we built visual inights using `IBM Streams` and `Streams flow` service on `IBM Cloud pak for data` and we also created a `Monitoring and Alerting application` at a `Satellite location`. You can extent the this code pattern for deriving insights and sending realtime alerts of your IoT data at your location with low latency.
 
 - Use the AI services on **IBM Cloud pak for data** to build amazing solutions, at your location using **IBM Cloud Satellite**. More about cloud pak for data [here](https://www.ibm.com/in-en/products/cloud-pak-for-data).
