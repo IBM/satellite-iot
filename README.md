@@ -142,9 +142,9 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 #### 7.2 Create a Stream Flow from the IoT simulator on Cloud Pak for Data
 
-- Click on `Add to project`.
+- Navigate to the project that you created in step above and click on `Add to project`.
 
- ![](images/s1.png)
+ <!-- ![](images/s1.png) -->
 
 - Select `Streams flow`.
 
@@ -154,7 +154,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 ![](images/s3.png)
 
-- Follow the steps shown in the gif below to create source and target.
+- From the `Source` tab, drag and drop `Http` and from the `Target` tab drag and drop `Debug`. Connect the source to the target as shown below,
 
 ![](images/s4.gif)
 
@@ -189,15 +189,15 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 - Goto `Instances` from the menu.
 
-- Click on the newly provisioned streams instance as shown below.
+- Click on the newly provisioned streams instance.
 
-![](images/streams1.png)
+<!-- ![](images/streams1.png) -->
 
 - From `Streams external endpoints` click on `console` endpoint as shown below.
 
 ![](images/streams2.png)
 
-- Now add widget hover your over the arrow mark and click `Create Dashboard View` as shown below.
+- Now to add widget, hover over the arrow mark and click `Create Dashboard View` as shown below.
 
 ![](images/streams3.png)
 
@@ -216,13 +216,11 @@ You can complete this step by following the gif in the dropdown below or alterna
   <img src="images/streams7.png" width="420" /> 
 </p>
 
-
 * You can now see **Data Visualization** line graph in the dashboard.
 
 ![](images/streams8.gif)
 
 * Similarly you can create different graphs and tables according to the need.
-
 
 ### 8. Deploy the IoT data monitoring and alerting application on Red Hat OpenShift cluster
 
