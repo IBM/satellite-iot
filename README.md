@@ -8,7 +8,7 @@ In this code pattern, we will create a live dashboard view of temperature IoT da
 
 ## Flow
 
-![](images/Architecture.png)
+![Architecture-Satellite](images/Architecture.png)
 
 1. Create a Satellite location and assign hosts using IBM Cloud Satellite.
 2. Create the OpenShift Cluster that will live on your satellite location.
@@ -84,10 +84,10 @@ Since we don't have access to actual temperature sensors, we will be using an Io
 #### 6.1. Connect to the OpenShift cluster in your CLI
 
 - To log in, you need a token which can be generated after you log in to OpenShift Cluster web console. Click the drop-down under your name in the right corner of your screen and select Copy Login Command.
-![](images/redhat1.png)
+![redhat_cluster_login](images/redhat1.png)
 
 - A new window will open requesting the login token details. Copy the login token. Copy the login token
-![](images/redhat2.png)
+![redhat_login_token](images/redhat2.png)
 
 - In your terminal, paste the login token. Run the command.
 
@@ -166,37 +166,37 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 - Select `Streams flow`.
 
-![](images/s2.png)
+![Streams_flow](images/s2.png)
 
 - Give a name to the stream and select `manually` tab as shown below. Click on `create`.
 
-![](images/s3.png)
+![Streams_manually](images/s3.png)
 
 - From the `Source` tab, drag and drop `Http` and from the `Target` tab drag and drop `Debug`. Connect the source to the target as shown below,
 
-![](images/s4.gif)
+![Streams_Source_and_Target](images/s4.gif)
 
 - Paste the url that you copied in step 6.4 as shown below in the gif and edit output schema.
 
-![](images/s5.gif)
+![Streams_schema](images/s5.gif)
 
 - Fill in the attribute names as shown below and click on `Apply`.
 
-![](images/s5.png)
+![Streams_name](images/s5.png)
 
 - You can test the stream as shown below.
 
-![](images/s6.png)
+![Streams_test](images/s6.png)
 
 - Click on `Save and run` as shown below.
 
-![](images/s7.png)
+![Streams_save_run](images/s7.png)
 
 - The service will take some time to build and deploy, please be patient.
 
 - Once the deployment is completed, you will see the following output.
 
-![](images/s8.gif)
+![Streams_flow](images/s8.gif)
 
 #### 7.3 Provision IBM Streams service on Cloud pak for Data
 
@@ -213,19 +213,19 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 - From `Streams external endpoints` click on `console` endpoint as shown below.
 
-![](images/streams2.png)
+![Streams_external_endpoints](images/streams2.png)
 
 - Now to add widget, hover over the arrow mark and click `Create Dashboard View` as shown below.
 
-![](images/streams3.png)
+![Streams_Create_Dashboard](images/streams3.png)
 
 * In `Create Data Visualisation View` enter **View Name**: ``Temperature Data monitoring`` and click `OK`.
 
-![](images/streams4.png)
+![Data_View](images/streams4.png)
 
 * You can now see **Monitoring Data** table in your dashboard. Click on create line graph Button in the table as shown.
 
-![](images/streams5.png)
+![Dashboard_Name](images/streams5.png)
 
 * Enter the **Chart Name**: `Data Visualization` and then click on **Categories** tab and select **container_temp** as shown below.
 
@@ -236,7 +236,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 * You can now see **Data Visualization** line graph in the dashboard.
 
-![](images/streams8.gif)
+![Data_Visualization](images/streams8.gif)
 
 * Similarly you can create different graphs and tables according to the need.
 
@@ -250,11 +250,11 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 - Paste the url of IoT simulator application that you copied in [step 6.5](#65-test-the-iot-simulator-app-by-running-it-using-copied-url-in-the-step-above-on-your-web-browser) in the text box as shown below and click on `View my data dashboard`.
 
-![](images/iotdata2.png)
+![Data_url](images/iotdata2.png)
 
 - Your data monitoring and alerting application will start monitoring and alerting.
 
-![](images/iotdata3.gif)
+![Data_view](images/iotdata3.gif)
 
 ### 9. Output and future scope
 <!-- 
