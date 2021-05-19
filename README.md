@@ -74,7 +74,7 @@ Please follow the below to setup and run this code pattern.
 >> NOTE: We will be using watson studio, streams flow and streams services for this code pattern. Please follow below links to install respective services on Cloud Pak for Data. <br> [Watson Studio](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/wsl.html) <br>[Streams](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/streams.html)
 <br>[Streams Flows](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/svc-welcome/stflows.html)
 
-- Alternatively, you can also install [Cloud pak for data on Red Hat Marketplace](https://marketplace.redhat.com/en-us/products/ibm-cloud-pak-for-data).
+- Alternatively, you can also install [Cloud pak for data from Red Hat Marketplace](https://marketplace.redhat.com/en-us/products/ibm-cloud-pak-for-data).
 >> NOTE: If you are installing from Red Hat Marketplace, make sure you have configure the openshift cluster correctly. More information [here](https://marketplace.redhat.com/en-us/documentation/clusters#register-openshift-cluster-with-red-hat-marketplace).
 
 ### 6. Deploy the IoT simulator application 
