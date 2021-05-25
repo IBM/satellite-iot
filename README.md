@@ -245,7 +245,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 ### 8. Deploy the IoT data monitoring and alerting application on Red Hat OpenShift cluster
 
-- Follow the steps in [step 6](#6-deploy-the-iot-simulator-application-on-red-hat-openshift-cluster) to deploy the application on redhat openshift. Use **`IoT data monitoring and alerting application/deployment.yaml`** yaml file for this deployment.
+- Deploy the application on redhat openshift that is on your satellite location. Use **`IoT data monitoring and alerting application/deployment.yaml`** yaml file for this deployment.
 
 - Test the IoT simulator app by running it using copied url in the step above on your web browser.
 
