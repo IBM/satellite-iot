@@ -70,6 +70,8 @@ Please follow the below to setup and run this code pattern.
 
 - Follow the steps in this [link](https://cloud.ibm.com/docs/satellite?topic=openshift-satellite-clusters#satcluster-create-console) to create OpenShift clusters on Satellite from the console.
 
+- Access your OpenShift cluster on Satellite by following the instructions in this [link](https://cloud.ibm.com/docs/openshift?topic=openshift-access_cluster#access_cluster_sat)
+
 ### 5. Install IBM Cloud Pak for Data on the Red Hat OpenShift cluster
 
 -  Follow the steps in this [link](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/cpd/install/install.html) to install IBM Cloud Pak for Data on Openshift Cluster.
