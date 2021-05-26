@@ -84,9 +84,9 @@ If you are installing from Red Hat Marketplace, make sure you have configured th
 
 ### 6. Deploy the IoT simulator application 
 
-Since we don't have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern. You can deploy this application on premise.
+Since we don't have access to actual temperature sensors, we will be using an IoT Simulator for this code pattern. You can deploy this application on premise. Make sure the application has a public URL
 
-#### 6.1. Connect to the OpenShift cluster in your CLI
+#### 6.1. Connect to a OpenShift cluster on premise from your CLI
 
 - To log in, you need a token which can be generated after you log in to OpenShift Cluster web console. Click the drop-down under your name in the right corner of your screen and select Copy Login Command.
 ![redhat_cluster_login](images/redhat1.png)
@@ -247,11 +247,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 ### 8. Deploy the IoT data monitoring and alerting application on Red Hat OpenShift cluster
 
-- Deploy the application on redhat openshift that is on your satellite location. Use **`IoT data monitoring and alerting application/deployment.yaml`** yaml file for this deployment.
-
-- Test the IoT simulator app by running it using copied url in the step above on your web browser.
-
-<!-- ![](images/iotdata1.png) -->
+- Deploy the application on redhat openshift on your satellite location. Use **`IoT data monitoring and alerting application/deployment.yaml`** yaml file for this deployment.
 
 - Paste the url of IoT simulator application that you copied in [step 6.5](#65-test-the-iot-simulator-app-by-running-it-using-copied-url-in-the-step-above-on-your-web-browser) in the text box as shown below and click on `View my data dashboard`.
 
