@@ -39,7 +39,7 @@ Please follow the below to setup and run this code pattern.
 6. [Deploy the IoT simulator application ](#6-deploy-the-iot-simulator-application)
 7. [Build a streams flow and visualize incoming IoT data using Streams service on Cloud Pak for Data](#7-build-a-streams-flow-and-visualize-incoming-iot-data-using-streams-service-on-cloud-pak-for-data)
 8. [Deploy the IoT data monitoring and alerting application on Red Hat OpenShift cluster](#8-deploy-the-iot-data-monitoring-and-alerting-application-on-red-hat-openshift-cluster)
-9. [Output and future scope](#9-output-and-future-scope)
+9. [Summary](#9-summary)
 
 ### 1. Create a Satellite location in IBM Cloud.
 
@@ -257,7 +257,7 @@ You can complete this step by following the gif in the dropdown below or alterna
 
 ![Data_view](images/iotdata3.gif)
 
-### 9. Output and future scope
+### 9. Summary
 <!-- 
 <p float="left">
   <img src="images/streams8.gif" width="420" />
