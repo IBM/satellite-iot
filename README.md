@@ -26,6 +26,7 @@ In this code pattern, we will build a live dashboard view of temperature IoT dat
 * [IBM Cloud account](https://www.ibm.com/cloud/) : Create an IBM Cloud account.
 * [OC CLI](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html): Download and Install OpenShift CLI tool.
 * [Git Client](https://git-scm.com/downloads): Download Git Client CLI.
+* Knowledge about [Cloud Pak for Data](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/cpd/install/install.html) and its installation process on RedHat Openshit Cluster.
 
 # Steps
 
